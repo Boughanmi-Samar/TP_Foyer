@@ -9,55 +9,13 @@ import java.util.List;
 
 
 
-
-
-
-
-
-
-
-
-
-
-
 @Repository
  public interface BlocRepository extends JpaRepository<Bloc, Long> {
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
   // Récupérer les Blocs qui ont une capacité supérieure à 50 :
 
    List<Bloc> findAllByCapaciteBlocGreaterThan(long c);
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
@@ -76,27 +34,12 @@ import java.util.List;
     // Récupérer le bloc qui a un nom donné :
     Bloc findByNomBloc (String nom);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
     /* No need to code CRUD here. Its is already in the
     interfaces provided by the framework Spring Data JPA :
        - CrudRepository or
        - PagingAndSortingRepository or
        - JpaRepository
      */
-
 
     Bloc findBlocByNomBlocAndCapaciteBlocGreaterThan(String nb, long c);
 
@@ -106,8 +49,6 @@ import java.util.List;
 
     //Bloc findByC
     //findAllByFoyerIsNull();
-
-
 
 
 }
