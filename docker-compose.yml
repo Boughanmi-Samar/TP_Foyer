@@ -5,30 +5,46 @@ services:
     image: mysql:5.7
     restart: unless-stopped
     environment:
-      - MYSQL_ROOT_PASSWORD=root
-      - MYSQL_DATABASE=db
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: db        # base principale
+      MYSQL_USER: testuser      # 👈 pour tests si besoin
+      MYSQL_PASSWORD: testpass
     ports:
       - 3306:3306
     volumes:
       - db:/var/lib/mysql
+
+  testdb:
+    image: mysql:5.7
+    restart: unless-stopped
+    environment:
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: testdb    # 👈 base utilisée pour les tests JUnit
+      MYSQL_USER: testuser
+      MYSQL_PASSWORD: testpass
+    ports:
+      - 3307:3306               # ⚠️ port 3307 sur l’hôte pour éviter conflit avec XAMPP
+    volumes:
+      - testdbdata:/var/lib/mysql
+
   app-timesheet:
     depends_on:
       - mysqldb
     image: samarboughanmi/tp-foyer:1.0.0
-    #build : ./
     restart: on-failure
     ports:
       - 8089:8089
     environment:
       SPRING_APPLICATION_JSON: '{
-        "spring.datasource.url"  : "jdbc:mysql://mysqldb:3306/db?createDatabaseIfNotExist=true",
-        "spring.datasource.username" : "root",
-        "spring.datasource.password" : "",
-        "spring.jpa.properties.hibernate.dialect" : "org.hibernate.dialect.MySQL5InnoDBDialect",
-        "spring.jpa.hibernate.ddl-auto" : "update"
+        "spring.datasource.url": "jdbc:mysql://mysqldb:3306/db?createDatabaseIfNotExist=true",
+        "spring.datasource.username": "root",
+        "spring.datasource.password": "",
+        "spring.jpa.properties.hibernate.dialect": "org.hibernate.dialect.MySQLDialect",
+        "spring.jpa.hibernate.ddl-auto": "update"
       }'
     stdin_open: true
     tty: true
 
 volumes:
-  db :
+  db:
+  testdbdata:
