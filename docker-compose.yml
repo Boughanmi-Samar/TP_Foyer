@@ -11,9 +11,10 @@ services:
       - 3306:3306
     volumes:
       - db:/var/lib/mysql
-  app-timesheet:
+  app-tpfoyer:
     depends_on:
       - mysqldb
+    container_name: pipeline-tp-foyer
     image: samarboughanmi/tp-foyer:5.0.0
     #build : ./
     restart: on-failure
