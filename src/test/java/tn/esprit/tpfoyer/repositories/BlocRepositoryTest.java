@@ -14,7 +14,8 @@ import static org.assertj.core.api.Assertions.assertThat;
 
 @DataJpaTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-@ActiveProfiles("test") // Charge application-test.properties
+//@ActiveProfiles("test")
+
 public class BlocRepositoryTest {
 
     @Autowired
