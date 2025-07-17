@@ -1,4 +1,4 @@
-package tn.esprit.tpfoyer.repositories;
+package tn.esprit.tpfoyer.repositories.service;
 
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;

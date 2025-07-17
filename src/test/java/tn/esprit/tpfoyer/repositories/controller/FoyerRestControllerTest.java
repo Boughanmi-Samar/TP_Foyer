@@ -1,4 +1,4 @@
-package tn.esprit.tpfoyer.repositories;
+package tn.esprit.tpfoyer.repositories.controller;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import org.junit.jupiter.api.Test;
